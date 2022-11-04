@@ -63,7 +63,7 @@ document.querySelector(".searchBox").addEventListener("keyup", function (event) 
 })
 weather.featchWeather("Chicago")
 
-document.querySelector(".location").addEventListener("click", function () {
+document.querySelector(".fa-crosshairs").addEventListener("click", function () {
     navigator.geolocation.getCurrentPosition(success, error);
 })
 

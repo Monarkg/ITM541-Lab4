@@ -1,3 +1,7 @@
+h1{
+    font: bold;
+    text-align: center;
+}
 body{
     display: flex;
     justify-content: center;
@@ -25,13 +29,12 @@ body{
     font-size: 17px;
     border: 1px solid grey;
     border-radius: 10px;
-    width: 80%;
+    width: 70%;
     background: white;
-    float: left;
 
 }
-.search button {
-    width: 15%;
+.submit {
+    width: 20%;
     padding: 10px;
     color: white;
     font-size: 17px;
@@ -42,7 +45,14 @@ body{
     background: black;
     opacity: 70%;
   }
-.search :hover{
+
+.fa-crosshairs{
+    padding: 10px;
+    background: black;
+    opacity: 70%;
+    color: white;
+}
+button:hover{
       background:black ;
       opacity: 100%;
   }

@@ -51,6 +51,8 @@ body{
     background: black;
     opacity: 70%;
     color: white;
+    border-radius: 10px;
+
 }
 button:hover{
       background:black ;

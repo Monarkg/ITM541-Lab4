@@ -28,14 +28,22 @@ let weather = {
         this.featchWeather(document.querySelector(".searchBox").value)
     },
     futureWeather: function (data) {
+
+        const result = JSON.stringify(data)
         for (let i = 1; i < 7; i++) {
             const { day, comment, iconURL } = data.next_days[i]
-            const { c, f } = data.next_days[i].min_temp
-            console.log(day, comment, iconURL)
-            document.querySelector(".day"+i).innerText = day;
-            document.querySelector(".icon"+i).src = iconURL;
-            document.querySelector(".comment"+i).innerText = comment;
-            document.querySelector(".min_temp"+i).innerText = "Min Temp: " + c + "°C/" + f + "°F";
+            var min_c = data.next_days[i].min_temp.c
+            var min_f = data.next_days[i].min_temp.f
+            var max_c = data.next_days[i].max_temp.c
+            var max_f = data.next_days[i].max_temp.f
+
+            console.log(day, comment, iconURL,min_c,min_f,max_c,max_f)
+            document.querySelector(".day" + i).innerText = day;
+            document.querySelector(".icon" + i).src = iconURL;
+            document.querySelector(".comment" + i).innerText = comment;
+            document.querySelector(".min_temp" + i).innerText = "Min : " + min_c + "°C/" + min_f + "°F";
+            document.querySelector(".max_temp" + i).innerText = "Max : " + max_c + "°C/" + max_f + "°F";
+
         }
     }
 }

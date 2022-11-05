@@ -10,10 +10,16 @@ let weather = {
             url = "https://weatherdbi.herokuapp.com/data/weather/" + arguments[0] + "," + arguments[1];
             console.log(url)
 
-        } fetch(
-            url)
-            .then(res => res.json())
+        } fetch(url).then(res => {
+            if (res.status) {
+                return res.json();
+            }})
             .then(data => this.displayWeather(data))
+            .catch((error) =>{
+                console.log(error)
+                alert("Please enter correct city dsfsdf");
+                document.querySelector('.searchBox').value='';
+            })
     },
     displayWeather: function (data) {
         const { region } = data;

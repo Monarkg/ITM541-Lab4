@@ -17,7 +17,7 @@ let weather = {
             .then(data => this.displayWeather(data))
             .catch((error) =>{
                 console.log(error)
-                alert("Please enter correct city dsfsdf");
+                alert("Please enter correct city");
                 document.querySelector('.searchBox').value='';
             })
     },
@@ -41,8 +41,7 @@ let weather = {
     },
     futureWeather: function (data) {
 
-        const result = JSON.stringify(data)
-        for (let i = 1; i < 7; i++) {
+        for (let i = 0; i < 7; i++) {
             const { day, comment, iconURL } = data.next_days[i]
             var min_c = data.next_days[i].min_temp.c
             var min_f = data.next_days[i].min_temp.f
@@ -87,3 +86,4 @@ function success(position) {
 function error() {
     location.innerHTML = "Unable to retrieve your location";
 }
+

@@ -1,22 +1,23 @@
-
-.flex{
+.flex {
     display: flex;
     align-items: center;
 }
-h1{
-    font: bold;
+
+h1 {
     text-align: center;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
     background: lightblue;
     background-image: url('worldmap.jpeg');
-    background-repeat:no-repeat ;
+    background-repeat: repeat;
     background-size: cover;
     font-family: 'Varela Round', sans-serif;
 }
-.weather{
+
+.weather {
     padding: 1em;
     border-radius: 30px;
     margin: 10px 5px;
@@ -27,21 +28,20 @@ body{
     flex-direction: column;
     width: 30%;
 }
-.search{
+
+.search {
     display: flex;
-    text-align: center;
-    width: 100%;
     justify-content: space-between;
 }
-.search input[type=text]{
+
+.search input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
     border-radius: 10px;
     width: 70%;
-    background: white;
-
 }
+
 .submit {
     width: 20%;
     padding: 10px;
@@ -50,12 +50,11 @@ body{
     border: 1px solid grey;
     border-radius: 10px;
     border-left: none;
-    cursor: pointer;
     background: black;
     opacity: 70%;
-  }
+}
 
-.fa-crosshairs{
+.fa-crosshairs {
     padding: 10px;
     background: black;
     opacity: 70%;
@@ -63,58 +62,83 @@ body{
     border-radius: 10px;
 
 }
-button:hover{
-      background:black ;
-      opacity: 100%;
-  }
-.comment, .comment1,.comment2, .comment3,.commen4, .comment5,.comment6{
+
+button:hover {
+    background: black;
+    opacity: 100%;
+}
+
+.comment,
+.comment1,
+.comment2,
+.comment3,
+.commen4,
+.comment5,
+.comment6 {
     text-transform: capitalize;
 }
 
-.grid-layout6{
+.dayLayout {
     display: flex;
     text-align: center;
-    width: 100%;
-    justify-content: space-between;
+
 }
-.weather-forcast-week{
+
+.weather-forcast-week {
     border-radius: 10px;
     margin: 0 5px 5px;
     background-color: #000;
     color: white;
     opacity: 70%;
 }
-.grid-layout6 div{
+
+.dayLayout div {
     margin: 10px;
-    align-self: start;
-    text-align: left;
-
 }
-.weather div{
+
+.weather div {
     margin: 5px;
-    align-items: left;
-
 }
 
-@media (max-width:880px){
-    .weather{
-       height: auto;
-        width: 30%;
-        font-size: smaller;
-       
+
+@media (max-width:850px) {
+    .weather {
+
+        font-size: x-small;
+        align-items: center;
     }
-    .grid-layout6{
+
+    .dayLayout {
         height: auto;
         width: auto;
-        font-size: smaller;
+        font-size: x-small;
+        text-align: center;
+
     }
-    .weather-forcast-week{
-        height: auto;
-        width: auto;
+
+    .submit,
+    h1,
+    .searchbox {
+        font-size: small;
     }
-    .flex{
-        height: auto;
-        width: auto;
+}
+
+@media (max-width:500px) {
+    .weather {
+        width: 90%;
     }
-   
+
+    .dayLayout {
+        flex-direction: column;
+    }
+
+    .dayLayout div {
+        text-align: center;
+    }
+
+    .weather-forcast-week {
+        display: flex;
+        justify-content: space-around;
+    }
+
 }

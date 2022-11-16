@@ -11,32 +11,56 @@ let weather = {
             console.log(url)
 
         } fetch(url).then(res => {
-            if (res.status) {
+            if (res.status == 200) {
+                console.log(res.status)
                 return res.json();
-            }})
-            .then(data => this.displayWeather(data))
-            .catch((error) =>{
-                console.log(error)
-                alert("Please enter correct city");
+            }
+            else if (res.status == 400) {
+                console.log(res.status)
+                alert("Special character is not allowed !! Please enter valid city")
                 document.querySelector('.searchBox').value='';
-            })
+            }
+            else if (res.status == 503) {
+                console.log(res.status)
+                alert("Server side error !! Try after sometime")
+                document.querySelector('.searchBox').value='';
+            }
+
+        }
+        )
+            .then(data => this.displayWeather(data))
+        // .catch((error) =>{
+        //     console.log(error)
+        //     alert("Please enter correct city");
+        //     document.querySelector('.searchBox').value='';
+        // })
     },
     displayWeather: function (data) {
-        const { region } = data;
-        const { dayhour, precip, humidity, iconURL, comment } = data.currentConditions
-        const { c, f } = data.currentConditions.temp
-        const { km, mile } = data.currentConditions.wind
-        console.log(region, c, f, dayhour, precip, humidity, iconURL, comment, km, mile)
-        document.querySelector(".city").innerText = "Weather in " + region;
-        document.querySelector(".dayhour").innerText = dayhour;
-        document.querySelector(".humidity").innerText = "Humidity: " + humidity;
-        document.querySelector(".temp").innerText = c + "°C/" + f + "°F";
-        document.querySelector(".precp").innerText = "Precipitation: " + precip;
-        document.querySelector(".wind").innerText = "Wind Speed: " + mile + " mile/hr";
-        document.querySelector(".icon").src = iconURL;
-        document.querySelector(".comment").innerText = comment;
-        this.futureWeather(data)
-
+        console.log(data)
+        console.log(Object.values(data)[1])
+        if (Object.values(data)[1] == "invalid query") {
+            console.log("invalid query")
+            alert("Please enter valid city");
+            document.querySelector('.searchBox').value='';
+        }
+        // const { message } = message;
+        // console.log(message)
+        else {
+            const { region } = data;
+            const { dayhour, precip, humidity, iconURL, comment } = data.currentConditions
+            const { c, f } = data.currentConditions.temp
+            const { km, mile } = data.currentConditions.wind
+            console.log(region, c, f, dayhour, precip, humidity, iconURL, comment, km, mile)
+            document.querySelector(".city").innerText = "Weather in " + region;
+            document.querySelector(".dayhour").innerText = dayhour;
+            document.querySelector(".humidity").innerText = "Humidity: " + humidity;
+            document.querySelector(".temp").innerText = c + "°C/" + f + "°F";
+            document.querySelector(".precp").innerText = "Precipitation: " + precip;
+            document.querySelector(".wind").innerText = "Wind Speed: " + mile + " mile/hr";
+            document.querySelector(".icon").src = iconURL;
+            document.querySelector(".comment").innerText = comment;
+            this.futureWeather(data)
+        }
 
     },
     futureWeather: function (data) {
@@ -66,7 +90,7 @@ document.querySelector(".searchBox").addEventListener("keyup", function (event) 
         weather.featchWeather(document.querySelector(".searchBox").value);
     }
 })
-weather.featchWeather("Chicago")
+weather.featchWeather("chicago")
 
 document.querySelector(".fa-crosshairs").addEventListener("click", function () {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -80,7 +104,7 @@ function success(position) {
     console.log('Latitude is ' + latitude + '° Longitude is ' + longitude + '°')
     var locationUrl = "https://weatherdbi.herokuapp.com/data/weather/" + latitude + "," + longitude;
     console.log(locationUrl)
-    weather.featchWeather(latitude,longitude)
+    weather.featchWeather(latitude, longitude)
 }
 
 function error() {

@@ -18,12 +18,12 @@ let weather = {
             else if (res.status == 400) {
                 console.log(res.status)
                 alert("Special character is not allowed !! Please enter valid city")
-                document.querySelector('.searchBox').value='';
+                document.querySelector('.searchBox').value = '';
             }
             else if (res.status == 503) {
                 console.log(res.status)
                 alert("Server side error !! Try after sometime")
-                document.querySelector('.searchBox').value='';
+                document.querySelector('.searchBox').value = '';
             }
 
         }
@@ -41,7 +41,7 @@ let weather = {
         if (Object.values(data)[1] == "invalid query") {
             console.log("invalid query")
             alert("Please enter valid city");
-            document.querySelector('.searchBox').value='';
+            document.querySelector('.searchBox').value = '';
         }
         // const { message } = message;
         // console.log(message)
@@ -82,12 +82,25 @@ let weather = {
         }
     }
 }
+
+
 document.querySelector(".submit").addEventListener("click", function () {
-    weather.featchWeather(document.querySelector(".searchBox").value);
+    if ((document.querySelector(".searchBox").value).trim().length == 0 ) {
+        alert("City cannot empty")
+    }
+    else{
+        weather.featchWeather(document.querySelector(".searchBox").value);
+    }
+
 })
 document.querySelector(".searchBox").addEventListener("keyup", function (event) {
     if (event.key == "Enter") {
+        if (document.querySelector(".searchBox").value.trim().length == 0) {
+            alert("City cannot empty")
+        }
+        else{
         weather.featchWeather(document.querySelector(".searchBox").value);
+        }
     }
 })
 weather.featchWeather("chicago")

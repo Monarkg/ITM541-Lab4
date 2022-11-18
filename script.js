@@ -10,34 +10,33 @@ let weather = {
             url = "https://weatherdbi.herokuapp.com/data/weather/" + arguments[0] + "," + arguments[1];
             console.log(url)
 
-        } fetch(url).then(res => {
-            if (res.status == 200) {
-                console.log(res.status)
-                return res.json();
-            }
-            else if (res.status == 400) {
-                console.log(res.status)
-                alert("Special character is not allowed !! Please enter valid city")
-                document.querySelector('.searchBox').value = '';
-            }
-            else if (res.status == 503) {
-                console.log(res.status)
-                alert("Server side error !! Try after sometime")
-                document.querySelector('.searchBox').value = '';
-            }
-
         }
-        )
-            .then(data => this.displayWeather(data))
-        // .catch((error) =>{
-        //     console.log(error)
-        //     alert("Please enter correct city");
-        //     document.querySelector('.searchBox').value='';
-        // })
+        fetch(url)
+            .then(async (res) => {
+                let data = await res.json();
+                console.log(res.status)
+                if (res.status == 200) {
+                    console.log(data)
+                    this.displayWeather(data)
+                }
+                else if (res.status == 400) {
+                    alert("Special character is not allowed !! Please enter valid city")
+                    document.querySelector('.searchBox').value = '';
+                }
+                else if (res.status == 503) {
+                    console.log(res.status)
+                    alert("Server side error !! Try after sometime")
+                    document.querySelector('.searchBox').value = '';
+                }
+
+            })
+            .catch((e) => {
+                console.log(e.messsage);
+                console.log("catch");
+            });
     },
     displayWeather: function (data) {
         console.log(data)
-        console.log(Object.values(data)[1])
         if (Object.values(data)[1] == "invalid query") {
             console.log("invalid query")
             alert("Please enter valid city");
@@ -85,10 +84,10 @@ let weather = {
 
 
 document.querySelector(".submit").addEventListener("click", function () {
-    if ((document.querySelector(".searchBox").value).trim().length == 0 ) {
+    if ((document.querySelector(".searchBox").value).trim().length == 0) {
         alert("City cannot empty")
     }
-    else{
+    else {
         weather.featchWeather(document.querySelector(".searchBox").value);
     }
 
@@ -98,8 +97,8 @@ document.querySelector(".searchBox").addEventListener("keyup", function (event) 
         if (document.querySelector(".searchBox").value.trim().length == 0) {
             alert("City cannot empty")
         }
-        else{
-        weather.featchWeather(document.querySelector(".searchBox").value);
+        else {
+            weather.featchWeather(document.querySelector(".searchBox").value);
         }
     }
 })

@@ -27,6 +27,10 @@ let weather = {
                     alert("Server side error !! Try after sometime")
                     document.querySelector('.searchBox').value = '';
                 }
+                else{
+                    alert("Try again later !!!!")
+                    document.querySelector('.searchBox').value = '';
+                }
 
             })
             .catch((e) => {

@@ -4,11 +4,11 @@ let weather = {
     featchWeather: function () {
         if (arguments.length == 1) {
             url = "https://weatherdbi.herokuapp.com/data/weather/" + arguments[0]
-            console.log(url)
+            //console.log(url)
         }
         else {
             url = "https://weatherdbi.herokuapp.com/data/weather/" + arguments[0] + "," + arguments[1];
-            console.log(url)
+           //console.log(url)
 
         }
         fetch(url)
@@ -16,7 +16,7 @@ let weather = {
                 let data = await res.json();
                 console.log(res.status)
                 if (res.status == 200) {
-                    console.log(data)
+                    //console.log(data)
                     this.displayWeather(data)
                 }
                 else if (res.status == 400) {
@@ -24,7 +24,6 @@ let weather = {
                     document.querySelector('.searchBox').value = '';
                 }
                 else if (res.status == 503) {
-                    console.log(res.status)
                     alert("Server side error !! Try after sometime")
                     document.querySelector('.searchBox').value = '';
                 }
@@ -32,18 +31,15 @@ let weather = {
             })
             .catch((e) => {
                 console.log(e.messsage);
-                console.log("catch");
             });
     },
     displayWeather: function (data) {
-        console.log(data)
+        //console.log(data)
         if (Object.values(data)[1] == "invalid query") {
-            console.log("invalid query")
+            //console.log("invalid query")
             alert("Please enter valid city");
             document.querySelector('.searchBox').value = '';
         }
-        // const { message } = message;
-        // console.log(message)
         else {
             const { region } = data;
             const { dayhour, precip, humidity, iconURL, comment } = data.currentConditions
@@ -113,9 +109,9 @@ function success(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
 
-    console.log('Latitude is ' + latitude + '° Longitude is ' + longitude + '°')
+    //console.log('Latitude is ' + latitude + '° Longitude is ' + longitude + '°')
     var locationUrl = "https://weatherdbi.herokuapp.com/data/weather/" + latitude + "," + longitude;
-    console.log(locationUrl)
+    //console.log(locationUrl)
     weather.featchWeather(latitude, longitude)
 }
 
